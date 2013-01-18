@@ -248,6 +248,7 @@ namespace Terminal {
     std::deque<wchar_t> icon_name;
     std::deque<wchar_t> window_title;
     unsigned int bell_count;
+    bool osc_received; /* true if an OSC has ever been received */
 
     Row newrow( void ) { return Row( ds.get_width(), ds.get_background_rendition() ); }
 
@@ -311,6 +312,8 @@ namespace Terminal {
     void reset( void );
     void soft_reset( void );
 
+    void set_osc_received( void ) { osc_received = true; }
+    bool get_osc_received( void ) const { return osc_received; }
     void set_icon_name( const std::deque<wchar_t> &s ) { icon_name = s; }
     void set_window_title( const std::deque<wchar_t> &s ) { window_title = s; }
     const std::deque<wchar_t> & get_icon_name( void ) const { return icon_name; }
